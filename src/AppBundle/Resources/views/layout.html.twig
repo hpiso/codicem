@@ -23,17 +23,16 @@
     </div>
     <div class="top-bar-right">
         <ul class="menu">
-            <li><a href="#">Salut {{ app.user.username }}</a></li>
+            <li>Salut {{ app.user.username }}</li>
+            <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
         </ul>
     </div>
 </div>
 
 <div class="callout large">
     <div class="row column text-center">
-        <h1>Changing the World Through Design</h1>
+        <h1>Moins tu dors, plus t'es fort</h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
-        <a href="#" class="button large">Learn More</a>
-        <a href="#" class="button large hollow">Learn Less</a>
     </div>
 </div>
 

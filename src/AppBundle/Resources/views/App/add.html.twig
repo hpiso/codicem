@@ -2,7 +2,14 @@
 
 {% block content %}
     <div class="row column">
-        <h1>Ajouter une conso</h1>
+        <div class="medium-6 columns">
+            <h3>Ajouter une conso</h3>
+            <p>Libre à vous d'ajouter n'importe quelle conso</p>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Ajouter" class="button">
+            {{ form_end(form) }}
+        </div>
     </div>
 {% endblock %}
 

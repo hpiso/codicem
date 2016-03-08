@@ -42,6 +42,12 @@ class ItemType
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     */
+    private $createdBy;
+
 
     /**
      * Get id
@@ -120,5 +126,28 @@ class ItemType
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param \UserBundle\Entity\User $createdBy
+     * @return ItemType
+     */
+    public function setCreatedBy(\UserBundle\Entity\User $createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
     }
 }

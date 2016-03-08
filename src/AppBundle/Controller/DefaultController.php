@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Item;
-use AppBundle\Form\ItemType;
+use AppBundle\Entity\ItemType;
+use AppBundle\Form\ItemType as formItemType;
+use AppBundle\Form\ItemTypeType;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -35,7 +37,7 @@ class DefaultController extends Controller
         $levelPercentage = ($nbCalorie / self::CALORIE_MAX) * 100;
 
         $item = new Item();
-        $form = $this->createForm(new ItemType(), $item);
+        $form = $this->createForm(new formItemType(), $item);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -97,8 +99,25 @@ class DefaultController extends Controller
      *
      * @Route("/ajouter-conso", name="conso_add")
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
-        return $this->render('AppBundle:App/add.html.twig');
+        $itemType = new ItemType();
+
+        $form = $this->createForm(new ItemTypeType(), $itemType);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $itemType->setCreatedBy($this->getUser());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($itemType);
+            $em->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('AppBundle:App/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

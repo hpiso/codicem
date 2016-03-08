@@ -1,0 +1,24 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<div class="row">
+    <div class="small-4 large-4 large-offset-4 columns">
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="_password" required="required" />
+
+            <input type="submit" id="_submit" class="button" name="_submit" value="se connecter" />
+        </form>
+    </div>
+</div>
+{% endblock fos_user_content %}
