@@ -1,0 +1,67 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="medium-4 columns">
+            <img class="thumbnail" src="http://placehold.it/750x350">
+        </div>
+        <div class="medium-8 columns">
+            <h2>Our Agency, our selves.</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th width="200">Picto</th>
+                    <th>Consomation</th>
+                    <th width="150">Calorie</th>
+                    <th>Bu / manger à :</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td></td>
+                        <td>{{ item.itemType.name }}</td>
+                        <td>{{ item.itemType.calorie }}</td>
+                        <td>{{ item.createdAt | date('d m Y') }}</td>
+                        <td>
+                            <a data-open="{{ 'suppr' ~ item.id }}"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <div class="reveal" id="{{ 'suppr' ~ item.id }}" data-reveal>
+                        <h1>Ptit joueur t'enlèves des calories ?</h1>
+                        <p class="lead">{{ item.id }}</p>
+                        <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+                        <button class="close-button" data-close aria-label="Close modal" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+                    <tr>
+                        <td colspan="4">
+                            {{ form_start(form) }}
+                            <div class="input-group">
+                                {{ form_row(form.itemType) }}
+                                <div class="input-group-button">
+                                    <input type="submit" value="Ajouter une conso" class="button">
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row column">
+        <ul class="vertical medium-horizontal menu expanded text-center">
+            <li><a href="#"><div class="stat">28</div><span>Websites</span></a></li>
+            <li><a href="#"><div class="stat">43</div><span>Apps</span></a></li>
+            <li><a href="#"><div class="stat">95</div><span>Ads</span></a></li>
+            <li><a href="#"><div class="stat">59</div><span>Cakes</span></a></li>
+            <li><a href="#"><div class="stat">18</div><span>Logos</span></a></li>
+        </ul>
+    </div>
+{% endblock %}
+
