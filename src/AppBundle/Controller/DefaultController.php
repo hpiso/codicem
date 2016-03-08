@@ -21,6 +21,11 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $items = $em->getRepository('AppBundle:Item')->findAll();
 
+        $nbCalorie = 0;
+        foreach ($items as $item) {
+            $nbCalorie += $item->getItemType()->getCalorie();
+        }
+
         $item = new Item();
         $form = $this->createForm(new ItemType(), $item);
         $form->handleRequest($request);
@@ -32,7 +37,8 @@ class DefaultController extends Controller
 
         return $this->render('AppBundle:App/index.html.twig', [
             'items' => $items,
-            'form'  => $form->createView()
+            'form'  => $form->createView(),
+            'nbCalorie' => $nbCalorie,
         ]);
     }
 
