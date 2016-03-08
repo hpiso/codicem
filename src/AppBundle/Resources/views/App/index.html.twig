@@ -47,7 +47,29 @@
     <hr>
     <div class="row">
         <div class="medium-4 columns">
-            <img class="thumbnail" src="http://placehold.it/750x350">
+            {% if levelPercentage < 10 %}
+                <img class="thumbnail" src="{{ asset('assets/img/level-1.png') }}">
+            {% elseif levelPercentage < 20 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 30 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 40 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 50 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 60 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 70 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 80 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 90 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage < 100 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% elseif levelPercentage >= 100 %}
+                <img class="thumbnail" src="http://placehold.it/750x350">
+            {% endif %}
             <hr>
             <div class="row">
                 <div class="medium-12 columns text-center">
