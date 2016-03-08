@@ -56,8 +56,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * Deletes a Actualite entity.
-     *
      * @Route("/conso-delete/{id}", name="conso_delete")
      * @Method("delete")
      */
@@ -93,5 +91,14 @@ class DefaultController extends Controller
             ->add('submit', SubmitType::class, ['label' => 'Supprimer quand même', 'attr' => ['class' => 'button']])
             ->getForm()
             ;
+    }
+
+    /**
+     *
+     * @Route("/ajouter-conso", name="conso_add")
+     */
+    public function createAction()
+    {
+        return $this->render('AppBundle:App/add.html.twig');
     }
 }
