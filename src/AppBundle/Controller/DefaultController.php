@@ -20,8 +20,12 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $user = $this->getUser();
+
         $em = $this->getDoctrine()->getManager();
-        $items = $em->getRepository('AppBundle:Item')->findAll();
+        $items = $em->getRepository('AppBundle:Item')->findByUser(
+            ['user' => $user]
+        );
 
         $nbCalorie = 0;
         foreach ($items as $item) {
@@ -35,6 +39,8 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $item->setUser($user);
+
             $em->persist($item);
             $em->flush();
 

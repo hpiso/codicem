@@ -30,9 +30,20 @@ class Item
 
     /**
      * @ORM\ManyToOne(targetEntity="ItemType")
-     * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="item_id", referencedColumnName="id", nullable=false)
      */
     private $itemType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -67,4 +78,27 @@ class Item
         return $this->createdAt;
     }
     
+
+    /**
+     * Set itemType
+     *
+     * @param \AppBundle\Entity\ItemType $itemType
+     * @return Item
+     */
+    public function setItemType(\AppBundle\Entity\ItemType $itemType = null)
+    {
+        $this->itemType = $itemType;
+
+        return $this;
+    }
+
+    /**
+     * Get itemType
+     *
+     * @return \AppBundle\Entity\ItemType 
+     */
+    public function getItemType()
+    {
+        return $this->itemType;
+    }
 }
