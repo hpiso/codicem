@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
+    const CALORIE_MAX = 2500;
+
     /**
      * @Route("/", name="homepage")
      */
@@ -26,6 +28,8 @@ class DefaultController extends Controller
             $nbCalorie += $item->getItemType()->getCalorie();
         }
 
+        $levelPercentage = ($nbCalorie / self::CALORIE_MAX) * 100;
+
         $item = new Item();
         $form = $this->createForm(new ItemType(), $item);
         $form->handleRequest($request);
@@ -33,12 +37,15 @@ class DefaultController extends Controller
         if ($form->isValid()) {
             $em->persist($item);
             $em->flush();
+
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render('AppBundle:App/index.html.twig', [
-            'items' => $items,
-            'form'  => $form->createView(),
-            'nbCalorie' => $nbCalorie,
+            'items'           => $items,
+            'form'            => $form->createView(),
+            'nbCalorie'       => $nbCalorie,
+            'levelPercentage' => $levelPercentage,
         ]);
     }
 
@@ -46,14 +53,14 @@ class DefaultController extends Controller
      * Deletes a Actualite entity.
      *
      * @Route("/conso-delete/{id}", name="conso_delete")
-     * @Method("DELETE")
+     * @Method("delete")
      */
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($request->isMethod('delete')) {
             $em   = $this->getDoctrine()->getManager();
             $item = $em->getRepository('AppBundle:Item')->find($id);
 
@@ -64,7 +71,7 @@ class DefaultController extends Controller
             $em->remove($item);
             $em->flush();
 
-            $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render('AppBundle:App/delete-form.html.twig', [
@@ -75,7 +82,8 @@ class DefaultController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setMethod('DELETE')
+            ->setAction($this->generateUrl('conso_delete', ['id' => $id]))
+            ->setMethod('delete')
             ->add('submit', SubmitType::class, ['label' => 'Supprimer quand même', 'attr' => ['class' => 'button']])
             ->getForm()
             ;

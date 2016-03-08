@@ -6,9 +6,42 @@
             <a href="#"><div class="stat">{{ nbCalorie }}</div><span>Calorie Total</span></a>
         </div>
         <div class="medium-10 columns">
-            <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
-                <div class="progress-meter" style="width: 50%"></div>
-            </div>
+            {% if levelPercentage < 10 %}
+                <p class="lead">Level 1 / 10 - <em class="message-level">Petit joueur, t'as au moins commencé à coder ?</em></p>
+            {% elseif levelPercentage < 20 %}
+                <p>Level 2 / 10</p>
+            {% elseif levelPercentage < 30 %}
+                <p>Level 3 / 10</p>
+            {% elseif levelPercentage < 40 %}
+                <p>Level 4 / 10</p>
+            {% elseif levelPercentage < 50 %}
+                <p>Level 5 / 10</p>
+            {% elseif levelPercentage < 60 %}
+                <p>Level 6 / 10</p>
+            {% elseif levelPercentage < 70 %}
+                <p>Level 7 / 10</p>
+            {% elseif levelPercentage < 80 %}
+                <p>Level 8 / 10</p>
+            {% elseif levelPercentage < 90 %}
+                <p>Level 9 / 10</p>
+            {% elseif levelPercentage < 100 %}
+                <p>Level 10 / 10</p>
+            {% elseif levelPercentage >= 100 %}
+                <p>Level hum.. / 10</p>
+            {% endif %}
+            {% if levelPercentage < 33 %}
+                <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
+                </div>
+            {% elseif levelPercentage < 66 %}
+                <div class="warning progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
+                </div>
+            {% elseif levelPercentage >= 100 %}
+                <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
+                </div>
+            {% endif %}
         </div>
     </div>
     <hr>
@@ -38,12 +71,14 @@
                 <tbody>
                 {% for item in items %}
                     <tr>
-                        <td></td>
+                        <td>
+                            <img class="thumbnail img-conso" src="{{ item.itemType.image }}" alt="Photo of Uranus.">
+                        </td>
                         <td>{{ item.itemType.name }}</td>
                         <td>{{ item.itemType.calorie }}</td>
                         <td>{{ item.createdAt | date('d m Y') }}</td>
                         <td>
-                            <a data-open="{{ 'suppr' ~ item.id }}"><i class="fa fa-trash"></i></a>
+                            <a data-open="{{ 'suppr' ~ item.id }}"><span class="warning badge btn-suppr"><i class="fa fa-trash"></i></span></a>
                         </td>
                     </tr>
                     <div class="reveal" id="{{ 'suppr' ~ item.id }}" data-reveal>
@@ -70,6 +105,5 @@
             </table>
         </div>
     </div>
-    <hr>
 {% endblock %}
 
