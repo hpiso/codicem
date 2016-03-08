@@ -29,9 +29,8 @@
                         </td>
                     </tr>
                     <div class="reveal" id="{{ 'suppr' ~ item.id }}" data-reveal>
-                        <h1>Ptit joueur t'enlèves des calories ?</h1>
-                        <p class="lead">{{ item.id }}</p>
-                        <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+                        <h3>Ptit joueur t'enlèves des calories ?</h3>
+                        {{ render(controller('AppBundle:Default:delete', { 'id': item.id })) }}
                         <button class="close-button" data-close aria-label="Close modal" type="button">
                             <span aria-hidden="true">&times;</span>
                         </button>
