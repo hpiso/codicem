@@ -53,6 +53,13 @@ class ItemType
      *
      * @ORM\Column(name="image", type="string", length=255)
      * @Assert\NotBlank()
+     *
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255,
+     *      minMessage = "Your url must be at least {{ limit }} characters long",
+     *      maxMessage = "Your url cannot be longer than {{ limit }} characters"
+     * )
      */
     private $image;
 
