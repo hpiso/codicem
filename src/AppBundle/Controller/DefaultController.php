@@ -47,6 +47,11 @@ class DefaultController extends Controller
             $em->persist($item);
             $em->flush();
 
+            $this->addFlash(
+                'notice',
+                'Allé la !! '.$item->getItemType()->getCalorie().' calories en plus'
+            );
+
             return $this->redirectToRoute('homepage');
         }
 
@@ -77,6 +82,11 @@ class DefaultController extends Controller
 
             $em->remove($item);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                ''.$item->getItemType()->getCalorie().' calories en moins..'
+            );
 
             return $this->redirectToRoute('homepage');
         }
@@ -113,6 +123,11 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($itemType);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Tu peux désormais choisir "'.$itemType->getName().'"" dans la liste des consos disponibles'
+            );
 
             return $this->redirectToRoute('homepage');
         }

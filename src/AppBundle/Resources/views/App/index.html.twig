@@ -8,7 +8,7 @@
         <div class="medium-10 columns">
             {% if levelPercentage < 10 %}
                 <p class="lead">Level 1 / 10 -
-                    <em class="message-level">Seulement level 1 ? il serait temps que tu commences à boire ou manger</em>
+                    <em class="message-level">Seulement level 1 ? il serait temps que tu commences à boire ou manger !</em>
                 </p>
             {% elseif levelPercentage < 20 %}
                 <p class="lead">Level 2 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
@@ -39,6 +39,10 @@
                 <div class="warning progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
                     <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
                 </div>
+            {% elseif levelPercentage < 100 %}
+                <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
+                </div>
             {% elseif levelPercentage >= 100 %}
                 <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
                     <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
@@ -48,6 +52,16 @@
     </div>
     <hr>
     <div class="row">
+        <div class="medium-12 columns">
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="success callout" data-closable>
+                    <p>{{ flash_message }}</p>
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
         <div class="medium-4 columns">
             {% if levelPercentage < 10 %}
                 <img class="thumbnail" src="{{ asset('assets/img/level-1.png') }}">
@@ -75,7 +89,10 @@
             <hr>
             <div class="row">
                 <div class="medium-12 columns text-center">
-                    <a href="{{ path('classement') }}" class="button warning">Classement des plus gros mangeurs</a>
+                    <a href="{{ path('classement') }}" class="button">
+                        <i class="fa fa-bar-chart"> </i>
+                        Classement des plus gros consommateurs
+                    </a>
                 </div>
             </div>
         </div>
@@ -101,7 +118,7 @@
                         <td>{{ item.itemType.calorie }}</td>
                         <td>{{ item.createdAt | date('d m Y') }}</td>
                         <td>
-                            <a data-open="{{ 'suppr' ~ item.id }}"><span class="warning badge btn-suppr"><i class="fa fa-trash"></i></span></a>
+                            <a data-open="{{ 'suppr' ~ item.id }}"><span class="alert badge btn-suppr"><i class="fa fa-trash"></i></span></a>
                         </td>
                     </tr>
                     <div class="reveal" id="{{ 'suppr' ~ item.id }}" data-reveal>
