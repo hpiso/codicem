@@ -17,7 +17,9 @@ class ItemTypeType extends AbstractType
         $builder
             ->add('name')
             ->add('calorie')
-            ->add('image')
+            ->add('image', null, [
+                'label' => 'Url de l\'image (elle sera redimensionnée en 50px/50px dans la liste)',
+            ])
         ;
     }
     
