@@ -49,7 +49,7 @@ class DefaultController extends Controller
 
             $this->addFlash(
                 'notice',
-                'Allé la !! '.$item->getItemType()->getCalorie().' calories en plus'
+                'Allez la !! '.$item->getItemType()->getCalorie().' calories en plus'
             );
 
             return $this->redirectToRoute('homepage');
