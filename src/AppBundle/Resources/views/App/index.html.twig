@@ -104,7 +104,7 @@
                     <th width="200">Picto</th>
                     <th>Consos</th>
                     <th width="150">Calorie</th>
-                    <th>Bu / manger à :</th>
+                    <th>Bu / manger le :</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -116,7 +116,7 @@
                         </td>
                         <td>{{ item.itemType.name }}</td>
                         <td>{{ item.itemType.calorie }}</td>
-                        <td>{{ item.createdAt | date('d m Y') }}</td>
+                        <td>{{ item.createdAt | localizeddate('none', 'none', 'fr', null, "EEEE à H:mm") }}</td>
                         <td>
                             <a data-open="{{ 'suppr' ~ item.id }}"><span class="alert badge btn-suppr"><i class="fa fa-trash"></i></span></a>
                         </td>
