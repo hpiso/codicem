@@ -120,4 +120,18 @@ class DefaultController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     *
+     * @Route("/classement", name="classement")
+     */
+    public function classementAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('UserBundle:User')->findAll();
+
+        dump($users);die;
+
+        return $this->render('AppBundle:App/classement.html.twig');
+    }
 }

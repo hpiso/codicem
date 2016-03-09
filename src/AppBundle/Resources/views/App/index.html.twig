@@ -7,7 +7,9 @@
         </div>
         <div class="medium-10 columns">
             {% if levelPercentage < 10 %}
-                <p class="lead">Level 1 / 10 - <em class="message-level">Petit joueur, t'as au moins commencé à coder ?</em></p>
+                <p class="lead">Level 1 / 10 -
+                    <em class="message-level">Seulement level 1 ? il serait temps que tu commences à boire ou manger</em>
+                </p>
             {% elseif levelPercentage < 20 %}
                 <p class="lead">Level 2 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
             {% elseif levelPercentage < 30 %}
@@ -73,8 +75,7 @@
             <hr>
             <div class="row">
                 <div class="medium-12 columns text-center">
-                    <p class="calorie">Calorie total</p>
-                    <p class="calorieNb"></p>
+                    <a href="{{ path('classement') }}" class="button warning">Classement des plus gros mangeurs</a>
                 </div>
             </div>
         </div>

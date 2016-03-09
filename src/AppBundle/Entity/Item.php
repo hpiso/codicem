@@ -35,7 +35,7 @@ class Item
     private $itemType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="items")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
