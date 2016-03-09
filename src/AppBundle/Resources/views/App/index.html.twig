@@ -11,25 +11,25 @@
                     <em class="message-level">Seulement level 1 ? il serait temps que tu commences à boire ou manger !</em>
                 </p>
             {% elseif levelPercentage < 20 %}
-                <p class="lead">Level 2 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 2 / 10 </p>
             {% elseif levelPercentage < 30 %}
-                <p class="lead">Level 3 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 3 / 10 </p>
             {% elseif levelPercentage < 40 %}
-                <p class="lead">Level 4 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 4 / 10 </p>
             {% elseif levelPercentage < 50 %}
-                <p class="lead">Level 5 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 5 / 10 </p>
             {% elseif levelPercentage < 60 %}
-                <p class="lead">Level 6 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 6 / 10 </p>
             {% elseif levelPercentage < 70 %}
-                <p class="lead">Level 7 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 7 / 10 </p>
             {% elseif levelPercentage < 80 %}
-                <p class="lead">Level 8 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 8 / 10 </p>
             {% elseif levelPercentage < 90 %}
-                <p class="lead">Level 9 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 9 / 10 </p>
             {% elseif levelPercentage < 100 %}
-                <p class="lead">Level 10 / 10 - <em class="message-level">Ouai bon fais pas le malin</em></p>
+                <p class="lead">Level 10 / 10 </p>
             {% elseif levelPercentage >= 100 %}
-                <p class="lead">Mec t'es un fouuu !!!</p>
+                <p class="lead">t'as cru que c'était finit ou quoi ?</p>
             {% endif %}
             {% if levelPercentage < 33 %}
                 <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
@@ -44,8 +44,11 @@
                     <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
                 </div>
             {% elseif levelPercentage >= 100 %}
-                <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
-                    <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
+                <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="100" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: {{ 100 }}%"></div>
+                </div>
+                <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage - 100}}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: {{ levelPercentage - 100}}%"></div>
                 </div>
             {% endif %}
         </div>
@@ -63,28 +66,33 @@
             {% endfor %}
         </div>
         <div class="medium-4 columns">
+            <div class="row">
+                <div class="medium-12 columns text-center">
+                    <p>Ton état</p>
+                </div>
+            </div>
             {% if levelPercentage < 10 %}
-                <img class="thumbnail" src="{{ asset('assets/img/level-1.png') }}">
+                <img class="thumbnail" src="{{ asset('assets/img/level-1.jpg') }}">
             {% elseif levelPercentage < 20 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-2.jpg') }}">
             {% elseif levelPercentage < 30 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-3.jpg') }}">
             {% elseif levelPercentage < 40 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-4.jpg') }}">
             {% elseif levelPercentage < 50 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-5.jpg') }}">
             {% elseif levelPercentage < 60 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-6.jpg') }}">
             {% elseif levelPercentage < 70 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-7.jpg') }}">
             {% elseif levelPercentage < 80 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-8.jpg') }}">
             {% elseif levelPercentage < 90 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-9.jpg') }}">
             {% elseif levelPercentage < 100 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-10.jpg') }}">
             {% elseif levelPercentage >= 100 %}
-                <img class="thumbnail" src="http://placehold.it/750x350">
+                <img class="thumbnail" src="{{ asset('assets/img/level-10.jpg') }}">
             {% endif %}
             <hr>
             <div class="row">
