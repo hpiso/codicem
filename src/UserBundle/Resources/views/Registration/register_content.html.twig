@@ -3,7 +3,8 @@
 <div class="row">
     <div class="small-4 large-4 large-offset-4 columns">
     {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
+
+        {{ form_widget(form) }}
     <div>
         <input type="submit" value="S'enregistrer" class="button" />
     </div>
