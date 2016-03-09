@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ItemType
@@ -22,23 +23,36 @@ class ItemType
     private $id;
 
     /**
+     *
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
+     *
      * @var int
      *
      * @ORM\Column(name="calorie", type="smallint")
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
+     * @Assert\LessThan(
+     *     value = 500
+     * )
      */
     private $calorie;
 
     /**
+     * @Assert\NotBlank()
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $image;
 

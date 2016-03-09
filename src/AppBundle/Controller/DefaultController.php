@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -130,8 +131,27 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('UserBundle:User')->findAll();
 
-        dump($users);die;
+        $userClassement = [];
+        /** @var User $user */
+        foreach ($users as $keyUser => $user) {
+            $userClassement[$keyUser]['name'] = $user->getUsername();
+            foreach ($user->getItems() as $item) {
+                $userClassement[$keyUser]['scores'][] = $item->getItemType()->getCalorie();
 
-        return $this->render('AppBundle:App/classement.html.twig');
+            }
+            if (isset($userClassement[$keyUser]['scores'])) {
+                $userClassement[$keyUser]['scoreTotal'] = array_sum($userClassement[$keyUser]['scores']);
+            } else {
+                $userClassement[$keyUser]['scoreTotal'] = 0;
+            }
+        }
+
+        usort($userClassement, function($a, $b){
+            return $a['scoreTotal'] > $b['scoreTotal'] ? -1 : 1;
+        });
+
+        return $this->render('AppBundle:App/classement.html.twig', [
+            'userClassement' => $userClassement
+        ]);
     }
 }
