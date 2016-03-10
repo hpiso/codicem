@@ -28,8 +28,10 @@
                 <p class="lead">Level 9 / 10 </p>
             {% elseif levelPercentage < 100 %}
                 <p class="lead">Level 10 / 10 </p>
-            {% elseif levelPercentage >= 100 %}
+            {% elseif levelPercentage < 200 %}
                 <p class="lead">t'as cru que c'était finit ou quoi ?</p>
+            {% elseif levelPercentage >= 200 %}
+                <p class="lead">Et non pas de troisième bar !</p>
             {% endif %}
             {% if levelPercentage < 33 %}
                 <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
@@ -43,12 +45,19 @@
                 <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage }}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
                     <div class="progress-meter" style="width: {{ levelPercentage }}%"></div>
                 </div>
-            {% elseif levelPercentage >= 100 %}
+            {% elseif levelPercentage < 200 %}
                 <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="100" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
                     <div class="progress-meter" style="width: {{ 100 }}%"></div>
                 </div>
                 <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="{{ levelPercentage - 100}}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
                     <div class="progress-meter" style="width: {{ levelPercentage - 100}}%"></div>
+                </div>
+            {% elseif levelPercentage >= 200 %}
+                <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="100" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: 100%"></div>
+                </div>
+                <div class="alert progress" role="progressbar" tabindex="0" aria-valuenow="100" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: 100%"></div>
                 </div>
             {% endif %}
         </div>
