@@ -16,7 +16,7 @@ use UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
-    const CALORIE_MAX = 2500;
+    const CALORIE_MAX = 1700;
 
     /**
      * @Route("/", name="homepage")
